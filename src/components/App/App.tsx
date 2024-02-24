@@ -1,22 +1,21 @@
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { AsyncThunkAction } from '@reduxjs/toolkit';
+import { useEffect } from 'react';
 
-import { routes } from '../../utils/routes';
-import Home from '../Home';
+import { getCategories } from '../../features/categories/categoriesSlice';
+import { getProducts } from '../../features/Products/productsSlice';
+import { AppDispatch } from '../../features/store';
+
 import Header from '../Header';
 import Footer from '../Footer';
 import Sidebar from '../Sidebar';
-import { useEffect } from 'react';
-import { getCategories } from '../../features/categories/categoriesSlice';
-import {AppDispatch} from '../../features/store'
+import AppRoutes from '../Routes/Routes'
 
-const router = createBrowserRouter([{ path: routes.home, element: <Home /> }]);
 
 const App = () => {
 	const dispatch = useDispatch<AppDispatch>();
 	useEffect(() => {
 		dispatch(getCategories());
+		dispatch(getProducts());
 	}, [dispatch]);
 
 	return (
@@ -24,7 +23,7 @@ const App = () => {
 			<Header />
 			<div className='container'>
 				<Sidebar />
-				<RouterProvider router={router} />
+				<AppRoutes />
 			</div>
 			<Footer />
 		</div>
