@@ -1,10 +1,13 @@
 import ReactDOM from 'react-dom/client';
-import './styles/index.css'
+import { Provider } from 'react-redux';
+
+import { store } from './features/store';
+import './styles/index.css';
 import App from './components/App/App';
 
 
-
-
 ReactDOM.createRoot(document.getElementById('root')!).render(
-	<App />
+	<Provider store={store}>
+		<App />
+	</Provider>
 );

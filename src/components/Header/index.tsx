@@ -7,7 +7,9 @@ const Header = () => {
 		<div className={styles.header}>
 			<div className={styles.logo}>
 				<a href={routes.home}>
-					<h1>Online Shop</h1>
+					<h1>
+						<span style={{ color: '#7751a2' }}>Un</span>Shop
+					</h1>
 				</a>
 			</div>
 			<div className={styles.info}>
