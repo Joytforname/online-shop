@@ -4,6 +4,6 @@ export const routes = {
     product: '/products/:id',
     cart: '/cart',
 	category: '/categories/:id',
-    checkout: '/checkout',
+   profile: '/profile',
     login: '/login',
 }

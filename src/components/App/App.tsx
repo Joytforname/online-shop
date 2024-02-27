@@ -9,6 +9,7 @@ import Header from '../Header';
 import Footer from '../Footer';
 import Sidebar from '../Sidebar';
 import AppRoutes from '../Routes/Routes'
+import UserForm from '../UserForm';
 
 
 const App = () => {
@@ -21,6 +22,7 @@ const App = () => {
 	return (
 		<div className='app'>
 			<Header />
+			<UserForm/>
 			<div className='container'>
 				<Sidebar />
 				<AppRoutes />

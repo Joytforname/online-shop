@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom';
 import styles from '../../styles/Product.module.css';
 import { routes } from '../../utils/routes';
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addItemToCart } from '../../features/user/userSlice';
 
 interface Props {
 	images: string[];
@@ -12,13 +14,18 @@ interface Props {
 
 const sizes = ['S', 'M', 'L', 'XL', 'XXL'];
 
-const Product = ({ images, title, price, description }: Props) => {
+const Product = (item: Props) => {
+	const { images, title, price, description } = item;
+	const dispathch = useDispatch();
 	const [currentImg, setCurrentImg] = useState('');
 	const [currentSize, setCurrentSize] = useState('');
 	useEffect(() => {
 		if (!images.length) return;
 		setCurrentImg(images[0]);
 	}, [images]);
+	const addToCart = () => {
+		dispathch(addItemToCart(item));
+	};
 
 	return (
 		<section className={styles.product}>
@@ -50,7 +57,15 @@ const Product = ({ images, title, price, description }: Props) => {
 					<span>Sizes:</span>
 					<div className={styles.list}>
 						{sizes.map((size, i) => (
-							<div onClick={() => {setCurrentSize(size)}} className={`${styles.size} ${currentSize === size ? styles.active : ''}`} key={i}>
+							<div
+								onClick={() => {
+									setCurrentSize(size);
+								}}
+								className={`${styles.size} ${
+									currentSize === size ? styles.active : ''
+								}`}
+								key={i}
+							>
 								{size}
 							</div>
 						))}
@@ -58,7 +73,13 @@ const Product = ({ images, title, price, description }: Props) => {
 				</div>
 				<p className={styles.description}>{description}</p>
 				<div className={styles.actions}>
-					<button className={styles.add} disabled={!currentSize}>Add to cart</button>
+					<button
+						className={styles.add}
+						disabled={!currentSize}
+						onClick={() => addToCart()}
+					>
+						Add to cart
+					</button>
 					<button className={styles.favourite}>Add to wishlist</button>
 				</div>
 				<div className={styles.bottom}>

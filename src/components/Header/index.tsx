@@ -1,8 +1,43 @@
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
 import styles from '../../styles/Header.module.css';
 import { routes } from '../../utils/routes';
 import AVATAR from '../../images/avatar.jpg';
+import { RootState } from '../../features/store';
+import User from '../../types/user.interface';
+import { toggleForm } from '../../features/user/userSlice';
 
 const Header = () => {
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
+	const {currentUser} = useSelector<RootState>(({user}) => user) as {
+		currentUser: null | User;
+	};
+	const [values, setValues] = useState({
+		name: 'Guest',
+		avatar: currentUser?.avatar ?? AVATAR,
+	});
+
+	const [search, setSearch] = useState('');
+
+	const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+		setSearch(event.target.value);
+	};
+	
+
+	useEffect(() => {
+		if(!currentUser) return
+		setValues({ name: currentUser.name, avatar: currentUser.avatar ?? '' });
+	}, [currentUser])
+
+
+	const handleClick = () => {
+	if (!currentUser) dispatch(toggleForm(true));
+	else navigate(routes.profile)
+	}
 	return (
 		<div className={styles.header}>
 			<div className={styles.logo}>
@@ -13,12 +48,12 @@ const Header = () => {
 				</a>
 			</div>
 			<div className={styles.info}>
-				<div className={styles.user}>
+				<div className={styles.user} onClick={handleClick}>
 					<div
 						className={styles.avatar}
-						style={{ backgroundImage: `url(${AVATAR})` }}
+						style={{ backgroundImage: `url(${values.avatar})` }}
 					/>
-					<div className={styles.username}>Hello</div>
+					<div className={styles.username}>{values.name}</div>
 				</div>
 				<form className={styles.form}>
 					<div className={styles.icon}>
@@ -32,8 +67,8 @@ const Header = () => {
 							name='search'
 							placeholder='Search...'
 							autoComplete='off'
-							onChange={(e) => console.log(e.target.value)}
-							value=''
+							onChange={(e) => handleSearch(e)}
+							value={search}
 						/>
 					</div>
 					{/* <div className={styles.box}></div> */}

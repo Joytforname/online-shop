@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
 import styles from '../../styles/Products.module.css';
-import Product from '../../types/product.interface';
+import ProductType from '../../types/product.interface';
 import { CSSProperties } from 'react';
 
 type Props = {
 	title: string;
-	products: Product[];
+	products: ProductType[];
 	style?: CSSProperties | undefined;
 	amount: number;
 };
@@ -16,7 +16,7 @@ const Products = ({ title, products =[], style, amount }: Props) => {
 		<section className={styles.products} style={style}>
 			{title && <h2>{title}</h2>}
 			<div className={styles.list}>
-				{list.map((product: Product) => (
+				{list.map((product: ProductType) => (
 					<Link
 						to={`/products/${product.id}`}
 						key={product.id}
