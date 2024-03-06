@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import styles from '../../styles/Header.module.css';
 import { routes } from '../../utils/routes';
@@ -9,12 +9,16 @@ import AVATAR from '../../images/avatar.jpg';
 import { RootState } from '../../features/store';
 import User from '../../types/user.interface';
 import { toggleForm } from '../../features/user/userSlice';
+import { useGetProductsQuery } from '../../features/api/apiSlice';
+import ProductType from '../../types/product.interface';
 
 const Header = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-	const {currentUser} = useSelector<RootState>(({user}) => user) as {
-		currentUser: null | User;
+
+	const {currentUser, cart} = useSelector<RootState>(({user}) => user) as {
+		currentUser: null | User,
+		cart: [] | ProductType[]
 	};
 	const [values, setValues] = useState({
 		name: 'Guest',
@@ -22,6 +26,8 @@ const Header = () => {
 	});
 
 	const [search, setSearch] = useState('');
+	const {data, isLoading} = useGetProductsQuery({title: search});
+	console.log('data: ', data);
 
 	const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setSearch(event.target.value);
@@ -71,7 +77,16 @@ const Header = () => {
 							value={search}
 						/>
 					</div>
-					{/* <div className={styles.box}></div> */}
+					{search && <div className={styles.box}>
+						{isLoading ? 'Loading...' : !data.length ? 'No results' : data.map((item: ProductType) => (
+							<Link to={`/products/${item.id}`} key={item.id} className={styles.item} onClick={() => setSearch('')}>
+								<div className={styles.image} style={{ backgroundImage: `url(${item.images[0]})` }}/>
+								<div className={styles.title}>{item.title}</div>
+								<div className={styles.price}>{item.price}$</div>
+								
+							</Link>
+						))}
+						</div>}
 				</form>
 				<div className={styles.account}>
 					<a href='' className={styles.favorites}>
@@ -79,12 +94,14 @@ const Header = () => {
 							<use xlinkHref={`/sprite.svg#heart`} />
 						</svg>
 					</a>
-					<a href={routes.cart} className={styles.cart}>
+					<div className={styles.cart} onClick={() => navigate(routes.cart)}>
 						<svg className={styles['icon-cart']}>
 							<use xlinkHref={`/sprite.svg#bag`} />
 						</svg>
-						<span className={styles.count}>2</span>
-					</a>
+						{cart.length > 0 && 
+						<span className={styles.count}>{cart.length}</span>
+						}
+					</div>
 				</div>
 			</div>
 		</div>

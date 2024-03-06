@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux';
 
 import styles from '../../styles/Profile.module.css';
 import {
-	createUser,
 	toggleForm,
 	updateUser,
 } from '../../features/user/userSlice';
@@ -21,6 +20,7 @@ const Profile = () => {
 		name: '',
 		password: '',
 		avatar: '',
+		id: 0,
 	});
 
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,8 +41,8 @@ const Profile = () => {
 			email: currentUser.email,
 			name: currentUser.name,
 			password: currentUser.password,
-			avatar: currentUser.avatar,
-			id: currentUser.id,
+			avatar: currentUser.avatar || 'default-avatar',
+			id: currentUser.id!,
 		});
 	}, [currentUser]);
 
