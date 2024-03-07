@@ -37,7 +37,7 @@ The application will be available at `https://online-shop-ten-teal.vercel.app/`.
 - TypeScript: A typed superset of JavaScript that compiles to plain JavaScript.
 - React Router: A standard library for routing in React applications.
 - Axios: A promise-based HTTP client for making API requests.
-- Styled Components: A popular CSS-in-JS library for styling React components.
+- React query
 
 ## Contributing
 
