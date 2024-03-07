@@ -1,5 +1,8 @@
 # UNSHOP - Online Store with React, Redux/Redux Toolkit, and TypeScript
 
+![App Screenshot](https://i.ibb.co/GWK0sNp/online-shop.png)
+
+
 Welcome to the UNSHOP project! This is an online store built using the React framework, Redux/Redux Toolkit for state management, and TypeScript for type safety. The goal of this project is to provide a seamless shopping experience for users, with features such as user authentication, registration, shopping cart, and product categories.
 
 ## Features
