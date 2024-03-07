@@ -1,30 +1,51 @@
-# React + TypeScript + Vite
+# UNSHOP - Online Store with React, Redux/Redux Toolkit, and TypeScript
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to the UNSHOP project! This is an online store built using the React framework, Redux/Redux Toolkit for state management, and TypeScript for type safety. The goal of this project is to provide a seamless shopping experience for users, with features such as user authentication, registration, shopping cart, and product categories.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- User Authentication: Securely log in and register with your email and password.
+- Shopping Cart: Add, remove, and manage items in your cart.
+- Product Categories: Browse through various categories of products.
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+To get started with the UNSHOP project, follow these steps:
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+1. Clone the repository:
+```bash
+git clone git@github.com:Joytforname/online-shop.git
 ```
+1. Install the dependencies:
+```bash
+cd unshop
+npm install
+```
+1. Start the development server:
+```bash
+npm start
+```
+The application will be available at `https://online-shop-ten-teal.vercel.app/`.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Technologies Used
+
+- React: A popular JavaScript library for building user interfaces.
+- Redux/Redux Toolkit: State management libraries for managing the application state.
+- TypeScript: A typed superset of JavaScript that compiles to plain JavaScript.
+- React Router: A standard library for routing in React applications.
+- Axios: A promise-based HTTP client for making API requests.
+- Styled Components: A popular CSS-in-JS library for styling React components.
+
+## Contributing
+
+We welcome contributions to the UNSHOP project! If you'd like to contribute, please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes and commit them.
+4. Push your branch to your fork.
+5. Submit a pull request.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
