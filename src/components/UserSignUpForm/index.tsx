@@ -1,10 +1,12 @@
 import { useState } from 'react';
+
+
 import styles from '../../styles/User.module.css';
-import { useDispatch } from 'react-redux';
 import { createUser, toggleForm, toggleFormType } from '../../features/user/userSlice';
+import { useAppDispatch } from '../../features/store';
 
 const UserSignUpForm = () => {
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 	const [values, setValues] = useState({
 		email: '',
 		name: '',

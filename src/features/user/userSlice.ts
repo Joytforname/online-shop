@@ -6,8 +6,8 @@ import axios from 'axios';
 import { GET_AUTH, GET_USERS, POST_LOGIN } from '../../utils/constants';
 
 interface IState {
-	currentUser: null | User;
-	cart: [] | ProductType[];
+	currentUser: User | null;
+	cart: ProductType[];
 	isLoading: boolean;
 	formType: 'signup' | 'login';
 	showForm: boolean;
@@ -23,7 +23,8 @@ const initialState: IState = {
 
 export const createUser = createAsyncThunk(
 	'users/createUser',
-	async (payload, thunkAPI) => {
+	async (payload: User, thunkAPI) => {
+		console.log('payload: ', payload);
 		try {
 			const res = await axios.post(`${GET_USERS}`, payload);
 			return res.data;
@@ -49,7 +50,7 @@ export const updateUser = createAsyncThunk(
 
 export const loginUser = createAsyncThunk(
 	'users/loginUser',
-	async (payload, thunkAPI) => {
+	async (payload: User, thunkAPI) => {
 		try {
 			const res = await axios.post(`${POST_LOGIN}`, payload);
 			const login = await axios.get(`${GET_AUTH}`, {
@@ -63,7 +64,7 @@ export const loginUser = createAsyncThunk(
 	}
 );
 
-const addCurrentUsers = (state, { payload }) => {
+const addCurrentUsers = (state: IState, { payload }: { payload: User }) => {
 	state.currentUser = payload;
 };
 

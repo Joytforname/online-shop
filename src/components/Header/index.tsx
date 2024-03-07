@@ -36,7 +36,7 @@ const Header = () => {
 
 	useEffect(() => {
 		if(!currentUser) return
-		setValues({ name: currentUser.name, avatar: currentUser.avatar ?? '' });
+		setValues({ name: currentUser.name ? currentUser.name : '', avatar: currentUser.avatar ?? '' });
 	}, [currentUser])
 
 

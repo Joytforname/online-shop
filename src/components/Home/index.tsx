@@ -1,13 +1,14 @@
 import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+
 import Poster from '../Poster';
-import Products from '../Products';
 import { AppDispatch, RootState } from '../../features/store';
+import Products from '../Products';
 import ProductType from '../../types/product.interface';
 import Categories from '../Categories';
 import Category from '../../types/category.interface';
 import Banner from '../Banner';
-import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
 import { filterByPrice } from '../../features/Products/productsSlice';
 
 const Home = () => {

@@ -1,9 +1,9 @@
 import { useSelector } from 'react-redux';
 import { RootState } from '../../features/store';
+import { NavLink } from 'react-router-dom';
 
 import styles from '../../styles/Sidebar.module.css';
 import Category from '../../types/category.interface';
-import { NavLink } from 'react-router-dom';
 
 const Sidebar = () => {
 	const { list } = useSelector<RootState>(({ categories }) => categories) as {

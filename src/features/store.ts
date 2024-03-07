@@ -3,6 +3,7 @@ import categoriesSlice from './categories/categoriesSlice';
 import productsSlice from './Products/productsSlice';
 import { apiSlice } from './api/apiSlice';
 import userSlice from './user/userSlice';
+import { useDispatch } from 'react-redux';
 
 export const store = configureStore({
 	reducer: {
@@ -20,3 +21,4 @@ export const store = configureStore({
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
+export const useAppDispatch = () => useDispatch<AppDispatch>();

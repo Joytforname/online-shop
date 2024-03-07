@@ -1,10 +1,10 @@
 import { useSelector } from 'react-redux';
-import { RootState } from '../../features/store';
+import { useDispatch } from 'react-redux';
 
+import { RootState } from '../../features/store';
 import UserSignUpForm from '../UserSignUpForm';
 import styles from '../../styles/User.module.css';
-import { useDispatch } from 'react-redux';
-import { toggleForm, toggleFormType } from '../../features/user/userSlice';
+import { toggleForm} from '../../features/user/userSlice';
 import UserLoginForm from '../../UserLoginForm';
 
 const UserForm = () => {

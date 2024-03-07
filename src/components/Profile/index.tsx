@@ -1,17 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
 
 import styles from '../../styles/Profile.module.css';
-import {
-	toggleForm,
-	updateUser,
-} from '../../features/user/userSlice';
-import { RootState } from '../../features/store';
+import { toggleForm, updateUser } from '../../features/user/userSlice';
+import { RootState, useAppDispatch } from '../../features/store';
 import User from '../../types/user.interface';
 
 const Profile = () => {
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 	const { currentUser } = useSelector<RootState>(({ user }) => user) as {
 		currentUser: null | User;
 	};
@@ -28,9 +24,9 @@ const Profile = () => {
 		setValues({ ...values, [name]: value });
 	};
 
-	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+	const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
 		event.preventDefault();
-		const isEmpty = Object.values(values).some((item) => !item);
+		const isEmpty = Object.values(values).some((item) => item === '');
 		if (isEmpty) return;
 		dispatch(updateUser(values));
 	};
@@ -39,7 +35,7 @@ const Profile = () => {
 		if (!currentUser) return;
 		setValues({
 			email: currentUser.email,
-			name: currentUser.name,
+			name: currentUser.name ? currentUser.name : '',
 			password: currentUser.password,
 			avatar: currentUser.avatar || 'default-avatar',
 			id: currentUser.id!,

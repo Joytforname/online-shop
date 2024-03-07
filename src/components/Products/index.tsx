@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
+import { CSSProperties } from 'react';
+
 import styles from '../../styles/Products.module.css';
 import ProductType from '../../types/product.interface';
-import { CSSProperties } from 'react';
 
 type Props = {
 	title: string;

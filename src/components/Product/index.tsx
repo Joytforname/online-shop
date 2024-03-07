@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+
 import styles from '../../styles/Product.module.css';
 import { routes } from '../../utils/routes';
-import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { addItemToCart } from '../../features/user/userSlice';
 
 interface Props {

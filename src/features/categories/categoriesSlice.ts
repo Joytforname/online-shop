@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { BASE_URL, GET_CATEGORIES } from '../../utils/constants';
 import axios from 'axios';
+
+import {GET_CATEGORIES } from '../../utils/constants';
 import Category from '../../types/category.interface';
 
 interface IState {

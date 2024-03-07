@@ -1,12 +1,13 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import { useGetProductQuery } from '../../features/api/apiSlice';
+import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+
+import { useGetProductQuery } from '../../features/api/apiSlice';
 import { routes } from '../../utils/routes';
 import Product from '../Product';
 import Products from '../Products';
-import { useDispatch } from 'react-redux';
 import { getRelatedProducts } from '../../features/Products/productsSlice';
-import { useSelector } from 'react-redux';
 import { RootState } from '../../features/store';
 import ProductType from '../../types/product.interface';
 
